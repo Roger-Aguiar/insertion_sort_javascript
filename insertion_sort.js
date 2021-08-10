@@ -27,18 +27,44 @@ class InsertionSort
         }
     }
 
+    sortDescending()
+    {
+        for(let i = 0; i < Object.keys(this.arrange).length - 1; i++)
+        {            
+            let j = i + 1;
+            let auxIndex = i;
+            let key = this.arrange[j];
+            while(j > 0)
+            {
+                if(key > this.arrange[auxIndex])
+                {
+                    let aux = this.arrange[auxIndex];
+                    this.arrange[auxIndex] = key;
+                    this.arrange[j] = aux;                    
+                }
+                auxIndex--;
+                j--;
+            }
+            this.displayArray();
+        }
+    }
+
     displayArray()
     {
         let output = "";
 
         for(let i = 0; i < Object.keys(this.arrange).length; i++)
         {
-            output+= this.arrange[i] < 10 ? "0" + this.arrange[i] + "   " : this.arrange[i] + "   ";            
+            output+= this.arrange[i] + "   ";            
         }
         console.log(output);
-    }
+    }    
 }
 
 let insertion = new InsertionSort();
 insertion.displayArray();
+console.log("Ascending order");
 insertion.sortAscending();
+console.log("\nReverse order");
+insertion.displayArray();
+insertion.sortDescending();
